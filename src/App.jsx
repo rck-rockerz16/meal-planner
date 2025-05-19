@@ -163,9 +163,9 @@ function App() {
                   <>
                     <p> Food: </p>
                     <ul>
-                      {scheduleData[editIndex].food.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
+                      {scheduleData[editIndex].food.map((item, index) =>
+                        item !== "" ? <li key={index}>{item}</li> : null
+                      )}
                     </ul>
                   </>
                 )}
