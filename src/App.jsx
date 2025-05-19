@@ -3,7 +3,21 @@ import jsPDF from "jspdf";
 import defaultScheduleData from "../defaultSchedule.json";
 import { db } from "./firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+const seedFirestore = async () => {
+  const userId = "defaultUser"; // or dynamic id
+  const userRef = doc(db, "users", userId);
 
+  try {
+    await setDoc(userRef, {
+      scheduleData: defaultScheduleData.defaultSchedule,
+    });
+    console.log("✅ Firestore seeded successfully");
+  } catch (error) {
+    console.error("❌ Failed to seed Firestore:", error);
+  }
+};
+
+seedFirestore();
 const reducer = (state, action) => {
   const { scheduleData, tempEditingData } = state || {};
   switch (action.type) {
@@ -65,7 +79,6 @@ function App() {
   const userId = "defaultUser"; // Replace with dynamic ID later if using auth
 
   const { scheduleData, activity, tempEditingData, editIndex } = state || {};
-
   // Load from Firestore on mount
   useEffect(() => {
     const loadInitial = async () => {
@@ -139,7 +152,6 @@ function App() {
         <div className="spinner" />
       </div>
     );
-
   return (
     <>
       {activity === "NotEditing" ? (
@@ -197,7 +209,9 @@ function App() {
                 </div>
                 <div className="other-values">
                   <span>Carbs: {scheduleData[editIndex].carbs || 0} | </span>
-                  <span>Protein: {scheduleData[editIndex].protein || 0}g | </span>
+                  <span>
+                    Protein: {scheduleData[editIndex].protein || 0}g |{" "}
+                  </span>
                   <span>Fats: {scheduleData[editIndex].fats || 0}g</span>
                 </div>
               </div>
