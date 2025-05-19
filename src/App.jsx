@@ -107,7 +107,6 @@ function App() {
 
     doc.save(`Meal-Schedule-${dateStr}_${timeStr}.pdf`);
   };
-
   return (
     <>
       {activity === "NotEditing" ? (
@@ -146,6 +145,7 @@ function App() {
         </div>
       ) : (
         <div className="overlay">
+          {console.log(scheduleData[editIndex].food)}
           <div className="preview-box-left">
             <div className="meal-card">
               <div className="meal-header">
@@ -160,7 +160,14 @@ function App() {
               </div>
               <div className="food-preview">
                 {scheduleData[editIndex].food.length > 0 && (
-                  <em> Food: {scheduleData[editIndex].food.join(", ")}</em>
+                  <>
+                    <p> Food: </p>
+                    <ul>
+                      {scheduleData[editIndex].food.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </>
                 )}
               </div>
             </div>
