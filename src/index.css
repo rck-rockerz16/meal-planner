@@ -32,7 +32,6 @@ body {
     font-size: 2.5rem;
     margin-bottom: 20px;
     background: linear-gradient(to right, var(--accent-dark), var(--accent));
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
 }
@@ -265,6 +264,7 @@ label {
         gap: 10px !important;
     }
 }
+
 /* ---------- DESKTOP LAYOUT (≥ 768 px) ---------- */
 @media (min-width: 768px) {
     .overlay {
@@ -296,67 +296,66 @@ label {
 /* ---------- MOBILE (under 768 px) ---------- */
 /* keep your existing mobile styles —
      no changes needed; everything still stacks */
-         @media (prefers-color-scheme: dark) {
-             :root {
-                 --bg-color: #121212;
-                 --card-bg: #1e1e1eaa;
-                 --accent: #7ce2db;
-                 --accent-dark: #32bcb4;
-                 --accent-deep: #22908a;
-                 --text-dark: #f0f0f0;
-                 --text-muted: #aaa;
-                 --glass-blur: blur(8px);
-                 /* optional tweak */
-             }
-    
-             body {
-                 background: radial-gradient(circle at 10% 10%, #1e1e1e, #121212, #1e1e1e);
-             }
-    
-             .meal-card,
-             .editing-box {
-                 border: 1px solid rgba(255, 255, 255, 0.05);
-             }
-    
-             .meal-input {
-                 background-color: #2a2a2a;
-                 color: var(--text-dark);
-                 border: 1px solid rgba(255, 255, 255, 0.1);
-             }
-    
-             .meal-input:focus {
-                 box-shadow: 0 0 6px rgba(124, 226, 219, 0.3);
-             }
-    
-             .meal-heading {
-                 background: linear-gradient(to right, var(--accent), var(--accent-dark));
-                 -webkit-background-clip: text;
-                 -webkit-text-fill-color: transparent;
-             }
-    
-             .submit-btn,
-             .download-btn {
-                 color: #ffffff;
-             }
-    
-             label {
-                 color: var(--text-dark);
-             }
-    
-             .header-right,
-             .undo-btn {
-                 color: var(--text-muted);
-             }
-    
-             .header-right:hover,
-             .undo-btn:hover {
-                 color: var(--accent);
-             }
-    
-             @media print {
-                 body {
-                     background: white !important;
-                     color: black !important;
-                 }
-             }
-         }
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #121212;
+        --card-bg: #1e1e1eaa;
+        --accent: #7ce2db;
+        --accent-dark: #32bcb4;
+        --accent-deep: #22908a;
+        --text-dark: #f0f0f0;
+        --text-muted: #aaa;
+        --glass-blur: blur(8px);
+        /* optional tweak */
+    }
+
+    body {
+        background: radial-gradient(circle at 10% 10%, #1e1e1e, #121212, #1e1e1e);
+    }
+
+    .meal-card,
+    .editing-box {
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .meal-input {
+        background-color: #2a2a2a;
+        color: var(--text-dark);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .meal-input:focus {
+        box-shadow: 0 0 6px rgba(124, 226, 219, 0.3);
+    }
+
+    .meal-heading {
+        background: linear-gradient(to right, var(--accent), var(--accent-dark));
+        -webkit-text-fill-color: transparent;
+    }
+
+    .submit-btn,
+    .download-btn {
+        color: #ffffff;
+    }
+
+    label {
+        color: var(--text-dark);
+    }
+
+    .header-right,
+    .undo-btn {
+        color: var(--text-muted);
+    }
+
+    .header-right:hover,
+    .undo-btn:hover {
+        color: var(--accent);
+    }
+
+    @media print {
+        body {
+            background: white !important;
+            color: black !important;
+        }
+    }
+}
