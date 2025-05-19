@@ -129,8 +129,11 @@ function App() {
                   <span>Fats: {meal.fats || 0}g</span>
                 </div>
                 <div className="food-preview">
-                  {meal.food.length > 0 && (
-                    <em> Food: {meal.food.join(", ")}</em>
+                  {meal.food.filter((f) => f.trim() !== "").length > 0 && (
+                    <em>
+                      Food:
+                      {meal.food.filter((f) => f.trim() !== "").join(", ")}
+                    </em>
                   )}
                 </div>
               </div>
