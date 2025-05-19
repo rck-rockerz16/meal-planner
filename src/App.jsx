@@ -1,22 +1,15 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 import jsPDF from "jspdf";
-import scheduleData from "../defaultSchedule.json";
+import defaultScheduleData from "../defaultSchedule.json";
+import { db } from "./firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
-const getInitialState = () => {
-  const localData = localStorage.getItem("mealScheduleData");
-  return {
-    scheduleData: localData
-      ? JSON.parse(localData)
-      : scheduleData.defaultSchedule,
-    activity: "NotEditing",
-    tempEditingData: null,
-    editIndex: null,
-  };
-};
-
-function reducer(state, action) {
-  const { scheduleData, tempEditingData } = state;
+const reducer = (state, action) => {
+  const { scheduleData, tempEditingData } = state || {};
   switch (action.type) {
+    case "LoadInitial":
+      return { ...action.payload };
+
     case "EditMeal":
       return {
         ...state,
@@ -24,6 +17,7 @@ function reducer(state, action) {
         tempEditingData: { ...scheduleData[action.id] },
         editIndex: action.id,
       };
+
     case "ChangeInput":
       const updatedField = { ...tempEditingData };
       if (action.field === "Food") {
@@ -43,8 +37,10 @@ function reducer(state, action) {
         tempEditingData: null,
         editIndex: null,
       };
+
     case "Close":
       return { ...state, activity: "NotEditing" };
+
     case "Undo":
       return {
         ...state,
@@ -57,18 +53,48 @@ function reducer(state, action) {
           fats: "",
         },
       };
+
     default:
       return state;
   }
-}
+};
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, null, getInitialState);
-  const { scheduleData, activity, tempEditingData, editIndex } = state;
+  const [state, dispatch] = useReducer(reducer, null);
+  const [loading, setLoading] = useState(true);
+  const userId = "defaultUser"; // Replace with dynamic ID later if using auth
 
+  const { scheduleData, activity, tempEditingData, editIndex } = state || {};
+
+  // Load from Firestore on mount
   useEffect(() => {
-    localStorage.setItem("mealScheduleData", JSON.stringify(scheduleData));
-  }, [scheduleData]);
+    const loadInitial = async () => {
+      const docRef = doc(db, "users", userId);
+      const docSnap = await getDoc(docRef);
+      const initialState = {
+        scheduleData: docSnap.exists()
+          ? docSnap.data().scheduleData
+          : defaultScheduleData.defaultSchedule,
+        activity: "NotEditing",
+        tempEditingData: null,
+        editIndex: null,
+      };
+      dispatch({ type: "LoadInitial", payload: initialState });
+      setLoading(false);
+    };
+    loadInitial();
+  }, []);
+
+  // Save to Firestore when scheduleData changes
+  useEffect(() => {
+    if (!loading && state?.scheduleData) {
+      const saveToFirebase = async () => {
+        const docRef = doc(db, "users", userId);
+        await setDoc(docRef, { scheduleData: state.scheduleData });
+      };
+      saveToFirebase();
+    }
+  }, [state?.scheduleData]);
 
   const downloadPDF = () => {
     const doc = new jsPDF();
@@ -76,7 +102,7 @@ function App() {
     doc.text("Daily Meal Schedule", 20, 20);
 
     let y = 30;
-    scheduleData.forEach((meal, i) => {
+    state.scheduleData.forEach((meal, i) => {
       doc.setFontSize(14);
       doc.setTextColor(40, 40, 40);
       doc.text(`${i + 1}. ${meal.type} - ${meal.time}`, 20, y);
@@ -104,9 +130,11 @@ function App() {
     const now = new Date();
     const dateStr = now.toISOString().slice(0, 10);
     const timeStr = now.toTimeString().slice(0, 5).replace(/:/g, "-");
-
     doc.save(`Meal-Schedule-${dateStr}_${timeStr}.pdf`);
   };
+
+  if (loading || !state) return <div>Loading...</div>;
+
   return (
     <>
       {activity === "NotEditing" ? (
@@ -148,7 +176,6 @@ function App() {
         </div>
       ) : (
         <div className="overlay">
-          {console.log(scheduleData[editIndex].food)}
           <div className="preview-box-left">
             <div className="meal-card">
               <div className="meal-header">
@@ -223,7 +250,6 @@ function App() {
                 Calories (kcal):
                 <input
                   type="number"
-                  placeholder="Calories (kcal)"
                   value={tempEditingData.calories || ""}
                   className="meal-input"
                   onChange={(event) =>
@@ -240,7 +266,6 @@ function App() {
                 Carbs (g):
                 <input
                   type="number"
-                  placeholder="Carbs (g)"
                   value={tempEditingData.carbs || ""}
                   className="meal-input"
                   onChange={(event) =>
@@ -257,7 +282,6 @@ function App() {
                 Protein (g):
                 <input
                   type="number"
-                  placeholder="Protein (g)"
                   value={tempEditingData.protein || ""}
                   className="meal-input"
                   onChange={(event) =>
@@ -274,7 +298,6 @@ function App() {
                 Fats (g):
                 <input
                   type="number"
-                  placeholder="Fats (g)"
                   value={tempEditingData.fats || ""}
                   className="meal-input"
                   onChange={(event) =>
