@@ -1,318 +1,208 @@
-/* Base styling */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --accent: #38bdf8;
+    --accent-dark: #0ea5e9;
+    --text-light: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-radius: 12px;
+    --transition: 0.3s ease;
+}
+
 body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(to bottom right, #f0f4f8, #d9e4f5);
     margin: 0;
-    padding: 0;
-    color: #333;
-    font-size: 15px;
-    /* Reduced slightly for compact look */
-    line-height: 1.4;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    padding: 20px;
 }
 
-/* Container */
-.meal-container {
-    padding: 1.8rem;
-    max-width: 1200px;
-    margin: auto;
-    animation: fadeIn 0.6s ease;
-}
-
+/* Headings */
 .meal-heading {
     text-align: center;
     font-size: 2rem;
-    color: #2d4059;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--accent);
 }
 
-/* Grid layout */
+/* Meal Grid */
 .meal-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-/* Meal card */
+/* Meal Card */
 .meal-card {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
+    background-color: var(--card-bg);
+    padding: 16px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .meal-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 }
 
 .meal-header {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #37474f;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--accent);
 }
 
-.macro-values span {
-    display: block;
-    font-size: 0.9rem;
-    color: #607d8b;
-    margin-bottom: 2px;
-}
-
-.download-btn,
-.submit-btn,
-.header-right {
-    background-color: #ff6f61;
-    color: white;
-    padding: 0.55rem 1.1rem;
-    border: none;
-    border-radius: 8px;
+.macro-values {
     font-size: 0.95rem;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.download-btn:hover,
-.submit-btn:hover,
-.header-right:hover {
-    background-color: #e75143;
-}
-.undo-btn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border-radius: 50%;
-    background-color: #ff6f61;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-.undo-btn:hover {
-    background-color: #e75143;
-}
-.download-btn-wrapper,
-.submit-btn-wrapper {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 3vh 5vw;
-    gap: 2rem;
-    z-index: 999;
-    animation: fadeIn 0.3s ease-in;
-    overflow-y: auto;
-}
-
-/* Left-side preview card */
-.preview-box-left {
-    flex-shrink: 0;
-    width: 300px;
-    margin-top: 1rem;
-}
-
-.preview-box-left .meal-card {
-    background: #ffffff;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
-}
-
-/* Editing box in center-right */
-.editing-box {
-    flex-grow: 1;
-    background: #ffffff;
-    padding: 1.5rem 2rem;
-    border-radius: 14px;
-    max-width: 700px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    margin-bottom: 8px;
+    color: var(--text-muted);
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 4px;
 }
 
-/* Form + header formatting remains */
+.food-preview {
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Download Button */
+.download-btn-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.download-btn {
+    background-color: var(--accent);
+    color: var(--bg-color);
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+.download-btn:hover {
+    background-color: var(--accent-dark);
+}
+
+/* Overlay for Editing */
+.overlay {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .overlay {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.preview-box-left {
+    flex: 1;
+}
+
+.editing-box {
+    flex: 2;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Editing Header */
 .editing-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 12px;
 }
 
-.header-left h2 {
-    font-size: 1.4rem;
-    margin: 0;
-    color: #2e3d49;
+.header-right,
+.undo-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--transition);
 }
 
+.header-right:hover,
+.undo-btn:hover {
+    color: var(--accent);
+}
+
+/* Form */
 .meal-data {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 15px;
 }
 
-.meal-data label {
-    font-weight: 500;
-    color: #455a64;
+label {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    font-size: 0.95rem;
+    color: var(--text-light);
 }
 
 .meal-input {
-    padding: 0.6rem;
-    font-size: 0.95rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    resize: vertical;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--text-muted);
+    border-radius: var(--border-radius);
+    background-color: #0f172a;
+    color: var(--text-light);
+    transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .meal-input:focus {
-    border-color: #2196f3;
-    background: #fff;
     outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 5px var(--accent);
 }
 
-/* Submit button */
 .submit-btn-wrapper {
     text-align: right;
 }
 
 .submit-btn {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 0.6rem 1.2rem;
-    font-weight: 600;
+    background-color: var(--accent);
+    color: var(--bg-color);
+    padding: 10px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     cursor: pointer;
+    font-size: 1rem;
+    transition: background-color var(--transition);
 }
 
 .submit-btn:hover {
-    background-color: #3e9141;
+    background-color: var(--accent-dark);
 }
 
-/* Undo button (circular) */
-.undo-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: #ff6f61;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.undo-btn:hover {
-    background-color: #e75143;
-}
-
-/* Close button */
-.header-right {
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: #999;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.header-right:hover {
-    color: #333;
-}
 /* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(15px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-@media (max-width: 768px) {
-    .overlay {
-        flex-direction: column;
-        padding: 2vh 4vw;
-        align-items: stretch;
-        gap: 1rem;
-        overflow-y: auto;
-    }
-
-    .preview-box-left {
-        width: 100%;
-        margin-top: 0;
-        order: 2;
-        /* Move below the form if you prefer */
-    }
-
-    .editing-box {
-        padding: 1rem;
-        max-width: 100%;
-        border-radius: 10px;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-        order: 1;
-    }
-
-    .editing-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .header-left {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .header-left h2 {
-        font-size: 1.2rem;
-    }
-
-    .meal-input {
-        font-size: 1rem;
-    }
-
-    .submit-btn-wrapper {
-        text-align: right;
-        margin-top: 1rem;
-    }
-
-    .submit-btn {
-        width: auto;
     }
 }
