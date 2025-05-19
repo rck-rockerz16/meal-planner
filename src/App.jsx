@@ -133,7 +133,12 @@ function App() {
     doc.save(`Meal-Schedule-${dateStr}_${timeStr}.pdf`);
   };
 
-  if (loading || !state) return <div>Loading...</div>;
+  if (loading || !state)
+    return (
+      <div className="loader-container">
+        <div className="spinner" />
+      </div>
+    );
 
   return (
     <>
