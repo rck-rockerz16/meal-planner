@@ -131,7 +131,7 @@ function App() {
                 <div className="food-preview">
                   {meal.food.filter((f) => f.trim() !== "").length > 0 && (
                     <em>
-                      Food:
+                      Food: &nbsp;
                       {meal.food.filter((f) => f.trim() !== "").join(", ")}
                     </em>
                   )}
