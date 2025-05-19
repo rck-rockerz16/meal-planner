@@ -1,0 +1,265 @@
+/* Base styling */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom right, #f0f4f8, #d9e4f5);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 15px;
+    /* Reduced slightly for compact look */
+    line-height: 1.4;
+}
+
+/* Container */
+.meal-container {
+    padding: 1.8rem;
+    max-width: 1200px;
+    margin: auto;
+    animation: fadeIn 0.6s ease;
+}
+
+.meal-heading {
+    text-align: center;
+    font-size: 2rem;
+    color: #2d4059;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid layout */
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+}
+
+/* Meal card */
+.meal-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.meal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.meal-header {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #37474f;
+}
+
+.macro-values span {
+    display: block;
+    font-size: 0.9rem;
+    color: #607d8b;
+    margin-bottom: 2px;
+}
+
+.download-btn,
+.submit-btn,
+.header-right {
+    background-color: #ff6f61;
+    color: white;
+    padding: 0.55rem 1.1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.download-btn:hover,
+.submit-btn:hover,
+.header-right:hover {
+    background-color: #e75143;
+}
+.undo-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: #ff6f61;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.undo-btn:hover {
+    background-color: #e75143;
+}
+.download-btn-wrapper,
+.submit-btn-wrapper {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3vh 5vw;
+    gap: 2rem;
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in;
+    overflow-y: auto;
+}
+
+/* Left-side preview card */
+.preview-box-left {
+    flex-shrink: 0;
+    width: 300px;
+    margin-top: 1rem;
+}
+
+.preview-box-left .meal-card {
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Editing box in center-right */
+.editing-box {
+    flex-grow: 1;
+    background: #ffffff;
+    padding: 1.5rem 2rem;
+    border-radius: 14px;
+    max-width: 700px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Form + header formatting remains */
+.editing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-left h2 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: #2e3d49;
+}
+
+.meal-data {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.meal-data label {
+    font-weight: 500;
+    color: #455a64;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.meal-input {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    resize: vertical;
+}
+
+.meal-input:focus {
+    border-color: #2196f3;
+    background: #fff;
+    outline: none;
+}
+
+/* Submit button */
+.submit-btn-wrapper {
+    text-align: right;
+}
+
+.submit-btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #3e9141;
+}
+
+/* Undo button (circular) */
+.undo-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #ff6f61;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.undo-btn:hover {
+    background-color: #e75143;
+}
+
+/* Close button */
+.header-right {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.header-right:hover {
+    color: #333;
+}
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

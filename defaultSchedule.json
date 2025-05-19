@@ -1,0 +1,67 @@
+{
+  "defaultSchedule": [
+    {
+      "type": "Breakfast",
+      "time": "08:00 AM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    },
+    {
+      "type": "Mid-Morning Snack",
+      "time": "10:30 AM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    },
+    {
+      "type": "Lunch",
+      "time": "01:00 PM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    },
+    {
+      "type": "Afternoon Snack",
+      "time": "04:00 PM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    },
+    {
+      "type": "Evening Tea",
+      "time": "06:00 PM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    },
+    {
+      "type": "Dinner",
+      "time": "08:00 PM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    },
+    {
+      "type": "Bedtime Snack",
+      "time": "10:00 PM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    }
+  ]
+}
