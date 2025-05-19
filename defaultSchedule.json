@@ -1,8 +1,8 @@
 {
   "defaultSchedule": [
     {
-      "type": "Breakfast",
-      "time": "08:00 AM",
+      "type": "Pre-Workout",
+      "time": "06:15 AM",
       "food": [],
       "calories": "",
       "carbs": "",
@@ -10,7 +10,16 @@
       "fats": ""
     },
     {
-      "type": "Mid-Morning Snack",
+      "type": "Post-Workout",
+      "time": "08:15 AM",
+      "food": [],
+      "calories": "",
+      "carbs": "",
+      "protein": "",
+      "fats": ""
+    },
+    {
+      "type": "Breakfast",
       "time": "10:30 AM",
       "food": [],
       "calories": "",
@@ -29,7 +38,7 @@
     },
     {
       "type": "Afternoon Snack",
-      "time": "04:00 PM",
+      "time": "04:30 PM",
       "food": [],
       "calories": "",
       "carbs": "",
@@ -37,7 +46,7 @@
       "fats": ""
     },
     {
-      "type": "Evening Tea",
+      "type": "Evening Munching",
       "time": "06:00 PM",
       "food": [],
       "calories": "",
@@ -48,15 +57,6 @@
     {
       "type": "Dinner",
       "time": "08:00 PM",
-      "food": [],
-      "calories": "",
-      "carbs": "",
-      "protein": "",
-      "fats": ""
-    },
-    {
-      "type": "Bedtime Snack",
-      "time": "10:00 PM",
       "food": [],
       "calories": "",
       "carbs": "",

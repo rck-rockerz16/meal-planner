@@ -1,0 +1,6 @@
+{
+  "appId": "com.mealplanner.app",
+  "appName": "meal-planner",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
