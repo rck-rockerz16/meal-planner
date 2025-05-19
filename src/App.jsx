@@ -156,10 +156,14 @@ function App() {
                   <strong>{meal.type}</strong> - {meal.time}
                 </div>
                 <div className="macro-values">
-                  <span>Calories: {meal.calories || 0}</span>
-                  <span>Carbs: {meal.carbs || 0}</span>
-                  <span>Protein: {meal.protein || 0}g</span>
-                  <span>Fats: {meal.fats || 0}g</span>
+                  <div className="calories">
+                    <span>Calories: {meal.calories || 0}</span>
+                  </div>
+                  <div className="other-values">
+                    <span>Carbs: {meal.carbs || 0} | </span>
+                    <span>Protein: {meal.protein || 0}g | </span>
+                    <span>Fats: {meal.fats || 0}g</span>
+                  </div>
                 </div>
                 <div className="food-preview">
                   {meal.food.filter((f) => f.trim() !== "").length > 0 && (
@@ -188,15 +192,19 @@ function App() {
                 {scheduleData[editIndex].time}
               </div>
               <div className="macro-values">
-                <span>Calories: {scheduleData[editIndex].calories || 0}</span>
-                <span>Carbs: {scheduleData[editIndex].carbs || 0}</span>
-                <span>Protein: {scheduleData[editIndex].protein || 0}g</span>
-                <span>Fats: {scheduleData[editIndex].fats || 0}g</span>
+                <div className="calories">
+                  <span>Calories: {scheduleData[editIndex].calories || 0}</span>
+                </div>
+                <div className="other-values">
+                  <span>Carbs: {scheduleData[editIndex].carbs || 0} | </span>
+                  <span>Protein: {scheduleData[editIndex].protein || 0}g | </span>
+                  <span>Fats: {scheduleData[editIndex].fats || 0}g</span>
+                </div>
               </div>
               <div className="food-preview">
                 {scheduleData[editIndex].food.length > 0 && (
                   <>
-                    <p> Food: </p>
+                    <p> Food </p>
                     <ul>
                       {scheduleData[editIndex].food.map((item, index) =>
                         item !== "" ? <li key={index}>{item}</li> : null
