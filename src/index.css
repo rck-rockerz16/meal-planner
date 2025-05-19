@@ -263,18 +263,20 @@ body {
         transform: translateY(0);
     }
 }
-/* === Responsive Design for Mobile === */
 @media (max-width: 768px) {
     .overlay {
         flex-direction: column;
         padding: 2vh 4vw;
         align-items: stretch;
         gap: 1rem;
+        overflow-y: auto;
     }
 
     .preview-box-left {
         width: 100%;
         margin-top: 0;
+        order: 2;
+        /* Move below the form if you prefer */
     }
 
     .editing-box {
@@ -282,6 +284,7 @@ body {
         max-width: 100%;
         border-radius: 10px;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        order: 1;
     }
 
     .editing-header {
@@ -305,10 +308,11 @@ body {
     }
 
     .submit-btn-wrapper {
-        text-align: center;
+        text-align: right;
+        margin-top: 1rem;
     }
 
     .submit-btn {
-        width: 100%;
+        width: auto;
     }
 }
