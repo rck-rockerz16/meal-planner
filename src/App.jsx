@@ -168,7 +168,7 @@ function App() {
                 </div>
                 <div className="macro-values">
                   <div className="calories">
-                    <span>Calories: {meal.calories || 0}</span>
+                    <span>Calories: {meal.calories || 0} kcal</span>
                   </div>
                   <div className="other-values">
                     <span>Carbs: {meal.carbs || 0} | </span>
@@ -204,12 +204,12 @@ function App() {
               </div>
               <div className="macro-values">
                 <div className="calories">
-                  <span>Calories: {scheduleData[editIndex].calories || 0}</span>
+                  <span>Calories: {scheduleData[editIndex].calories || 0} kcal</span>
                 </div>
                 <div className="other-values">
                   <span>Carbs: {scheduleData[editIndex].carbs || 0} | </span>
                   <span>
-                    Protein: {scheduleData[editIndex].protein || 0}g |{" "}
+                    Protein: {scheduleData[editIndex].protein || 0}g |
                   </span>
                   <span>Fats: {scheduleData[editIndex].fats || 0}g</span>
                 </div>
