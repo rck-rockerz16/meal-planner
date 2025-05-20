@@ -284,6 +284,9 @@ label {
     .header-left h2 {
         font-size: 17px;
     }
+    .total-macros{
+        font-size: 0.7rem;
+    }
 }
 
 /* Animations */

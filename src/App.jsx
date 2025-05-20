@@ -172,9 +172,11 @@ function App() {
           <h1 className="meal-heading">Daily Meal Schedule</h1>
           <div className="total-macros">
             <strong>Calories:</strong>&nbsp;
-            {total.calories} kcal &nbsp;|&nbsp; Carbs: {total.carbs}gm
-            &nbsp;|&nbsp; Protein: {total.protein}gm &nbsp;|&nbsp; Fats:{" "}
-            {total.fats}gm
+            {total.calories} kcal &nbsp;|&nbsp; <strong>Carbs:</strong>&nbsp;
+            {total.carbs}gm &nbsp;|&nbsp; <strong>Protein:</strong>&nbsp;
+            {total.protein}gm &nbsp;|&nbsp; <strong>Fats:</strong>&nbsp;
+            {total.fats}
+            gm
           </div>
           <div className="meal-grid">
             {scheduleData.map((meal, index) => (
