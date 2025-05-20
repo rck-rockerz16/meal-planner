@@ -143,6 +143,20 @@ function App() {
     const timeStr = now.toTimeString().slice(0, 5).replace(/:/g, "-");
     doc.save(`Meal-Schedule-${dateStr}_${timeStr}.pdf`);
   };
+  const getTotalMacros = () => {
+    return scheduleData?.reduce(
+      (totals, meal) => {
+        totals.calories += Number(meal.calories || 0);
+        totals.carbs += Number(meal.carbs || 0);
+        totals.protein += Number(meal.protein || 0);
+        totals.fats += Number(meal.fats || 0);
+        return totals;
+      },
+      { calories: 0, carbs: 0, protein: 0, fats: 0 }
+    );
+  };
+
+  const total = getTotalMacros();
 
   if (loading || !state)
     return (
@@ -156,6 +170,12 @@ function App() {
       {activity === "NotEditing" ? (
         <div className="meal-container">
           <h1 className="meal-heading">Daily Meal Schedule</h1>
+          <div className="total-macros">
+            <strong>Calories:</strong>&nbsp;
+            {total.calories} kcal &nbsp;|&nbsp; Carbs: {total.carbs}gm
+            &nbsp;|&nbsp; Protein: {total.protein}gm &nbsp;|&nbsp; Fats:{" "}
+            {total.fats}gm
+          </div>
           <div className="meal-grid">
             {scheduleData.map((meal, index) => (
               <div
@@ -234,7 +254,8 @@ function App() {
             <div className="editing-header">
               <div className="header-left">
                 <h2>
-                  <strong> {tempEditingData.type}</strong> - {tempEditingData.time}
+                  <strong> {tempEditingData.type}</strong> -{" "}
+                  {tempEditingData.time}
                 </h2>
                 <button
                   className="undo-btn"
