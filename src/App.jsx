@@ -204,7 +204,9 @@ function App() {
               </div>
               <div className="macro-values">
                 <div className="calories">
-                  <span>Calories: {scheduleData[editIndex].calories || 0} kcal</span>
+                  <span>
+                    Calories: {scheduleData[editIndex].calories || 0} kcal
+                  </span>
                 </div>
                 <div className="other-values">
                   <span>Carbs: {scheduleData[editIndex].carbs || 0} | </span>
@@ -232,7 +234,7 @@ function App() {
             <div className="editing-header">
               <div className="header-left">
                 <h2>
-                  {tempEditingData.type} - {tempEditingData.time}
+                  <strong> {tempEditingData.type}</strong> - {tempEditingData.time}
                 </h2>
                 <button
                   className="undo-btn"

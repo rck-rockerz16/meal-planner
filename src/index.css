@@ -152,18 +152,7 @@ body {
     transform: translateY(-4px);
 }
 
-@media (max-width: 768px) {
-    .overlay {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-    }
 
-    .preview-box-left,
-    .editing-box {
-        max-width: 90vw;
-    }
-}
 
 /* Editing Panel Specific */
 .editing-box textarea,
@@ -208,9 +197,17 @@ body {
     transition: color 0.2s ease;
 }
 
-.undo-btn:hover,
+.undo-btn {
+    padding-top: 0.5rem;
+    color: #007aff;
+}
+
+.undo-btn:hover {
+    color: #0062cc;
+}
+
 .header-right:hover {
-    color: #1c1c1e;
+    color: red;
 }
 
 /* Input Fields */
@@ -261,6 +258,23 @@ label {
 
 .submit-btn:hover {
     background-color: #28a745;
+}
+
+@media (max-width: 768px) {
+    .overlay {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .preview-box-left,
+    .editing-box {
+        max-width: 90vw;
+    }
+
+    .header-left h2 {
+        font-size: 17px;
+    }
 }
 
 /* Animations */
