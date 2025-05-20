@@ -147,8 +147,6 @@ body {
     transition: transform 0.3s ease;
 }
 
-.editing-box {}
-
 .preview-box-left:hover,
 .editing-box:hover {
     transform: translateY(-4px);
