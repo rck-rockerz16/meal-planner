@@ -3,21 +3,7 @@ import jsPDF from "jspdf";
 import defaultScheduleData from "../defaultSchedule.json";
 import { db } from "./firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-const seedFirestore = async () => {
-  const userId = "defaultUser"; // or dynamic id
-  const userRef = doc(db, "users", userId);
 
-  try {
-    await setDoc(userRef, {
-      scheduleData: defaultScheduleData.defaultSchedule,
-    });
-    console.log("✅ Firestore seeded successfully");
-  } catch (error) {
-    console.error("❌ Failed to seed Firestore:", error);
-  }
-};
-
-seedFirestore();
 const reducer = (state, action) => {
   const { scheduleData, tempEditingData } = state || {};
   switch (action.type) {
@@ -76,25 +62,37 @@ const reducer = (state, action) => {
 function App() {
   const [state, dispatch] = useReducer(reducer, null);
   const [loading, setLoading] = useState(true);
-  const userId = "defaultUser"; // Replace with dynamic ID later if using auth
+  const userId = "defaultUser"; // Use dynamic ID with auth if needed
 
   const { scheduleData, activity, tempEditingData, editIndex } = state || {};
-  // Load from Firestore on mount
+
+  // Load from Firestore on first render
   useEffect(() => {
     const loadInitial = async () => {
       const docRef = doc(db, "users", userId);
       const docSnap = await getDoc(docRef);
+
+      let initialSchedule = defaultScheduleData.defaultSchedule;
+
+      if (!docSnap.exists()) {
+        await setDoc(docRef, { scheduleData: initialSchedule });
+        console.log("✅ Firestore seeded");
+      } else {
+        initialSchedule = docSnap.data().scheduleData;
+        console.log("✅ Data loaded from Firestore");
+      }
+
       const initialState = {
-        scheduleData: docSnap.exists()
-          ? docSnap.data().scheduleData
-          : defaultScheduleData.defaultSchedule,
+        scheduleData: initialSchedule,
         activity: "NotEditing",
         tempEditingData: null,
         editIndex: null,
       };
+
       dispatch({ type: "LoadInitial", payload: initialState });
       setLoading(false);
     };
+
     loadInitial();
   }, []);
 
@@ -152,6 +150,7 @@ function App() {
         <div className="spinner" />
       </div>
     );
+
   return (
     <>
       {activity === "NotEditing" ? (
