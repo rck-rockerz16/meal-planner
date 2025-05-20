@@ -62,11 +62,10 @@ const reducer = (state, action) => {
 function App() {
   const [state, dispatch] = useReducer(reducer, null);
   const [loading, setLoading] = useState(true);
-  const userId = "defaultUser"; // Use dynamic ID with auth if needed
+  const userId = "defaultUser";
 
   const { scheduleData, activity, tempEditingData, editIndex } = state || {};
 
-  // Load from Firestore on first render
   useEffect(() => {
     const loadInitial = async () => {
       const docRef = doc(db, "users", userId);
@@ -96,7 +95,6 @@ function App() {
     loadInitial();
   }, []);
 
-  // Save to Firestore when scheduleData changes
   useEffect(() => {
     if (!loading && state?.scheduleData) {
       const saveToFirebase = async () => {
@@ -201,8 +199,7 @@ function App() {
                 <div className="food-preview">
                   {meal.food.filter((f) => f.trim() !== "").length > 0 && (
                     <em>
-                      Food: &nbsp;
-                      {meal.food.filter((f) => f.trim() !== "").join(", ")}
+                      • {meal.food.filter((f) => f.trim() !== "").join(" • ")}
                     </em>
                   )}
                 </div>
@@ -251,6 +248,13 @@ function App() {
                 )}
               </div>
             </div>
+            <button
+              className="back-btn"
+              onClick={() => dispatch({ type: "Close" })}
+              title="Back to Main Menu"
+            >
+              &larr;
+            </button>
           </div>
           <div className="editing-box">
             <div className="editing-header">
@@ -259,18 +263,13 @@ function App() {
                   <strong> {tempEditingData.type}</strong> -{" "}
                   {tempEditingData.time}
                 </h2>
-                <button
-                  className="undo-btn"
-                  onClick={() => dispatch({ type: "Undo" })}
-                >
-                  &#8630;
-                </button>
               </div>
               <button
-                className="header-right"
-                onClick={() => dispatch({ type: "Close" })}
+                className="undo-btn"
+                onClick={() => dispatch({ type: "Undo" })}
+                title="Reset Values"
               >
-                &times;
+                &#8630;
               </button>
             </div>
             <form
@@ -362,7 +361,11 @@ function App() {
               </label>
 
               <div className="submit-btn-wrapper">
-                <button type="submit" className="submit-btn">
+                <button
+                  type="submit"
+                  className="submit-btn"
+                  title="Submit the Meal"
+                >
                   Submit
                 </button>
               </div>

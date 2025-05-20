@@ -79,13 +79,13 @@ body {
 
 .macro-values span {
     font-size: 15px;
-    color: #666;
+    color: #000000;
     line-height: 1.5;
 }
 
 .food-preview {
     font-style: italic;
-    color: #8e8e93;
+    color: grey;
     margin-top: 0.5rem;
 }
 
@@ -147,6 +147,8 @@ body {
     transition: transform 0.3s ease;
 }
 
+.editing-box {}
+
 .preview-box-left:hover,
 .editing-box:hover {
     transform: translateY(-4px);
@@ -188,27 +190,32 @@ body {
 }
 
 .undo-btn,
-.header-right {
-    font-size: 22px;
-    color: #8e8e93;
+.back-btn {
+    font-size: 30px;
     border: none;
     background: none;
     cursor: pointer;
     transition: color 0.2s ease;
 }
 
+.back-btn {
+    padding-left: 90%;
+    color: #2ecc71;
+}
+
+.back-btn:hover {
+    color: #27ae60;
+}
+
 .undo-btn {
-    padding-top: 0.5rem;
     color: #007aff;
+    padding: 0;
 }
 
 .undo-btn:hover {
     color: #0062cc;
 }
 
-.header-right:hover {
-    color: red;
-}
 
 /* Input Fields */
 .meal-data {
@@ -284,7 +291,8 @@ label {
     .header-left h2 {
         font-size: 17px;
     }
-    .total-macros{
+
+    .total-macros {
         font-size: 0.7rem;
     }
 }
